@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Collection - LIVOST</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <h1>LIVOST</h1>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="mens.html" class="active">Men</a></li>
+                        <li><a href="womens.html">Women</a></li>
+                        <li><a href="sale.html">Sale</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-icons">
+                    <a href="login.html"><i class="fas fa-user"></i></a>
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <div class="menu-icon">
+                    <i class="fas fa-bars" onclick="toggleMenu()"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="banner-section">
+        <img src="images/category-men.jpg" alt="Men's Collection">
+        <div class="banner-content">
+            <h1>Men's Collection</h1>
+            <p>Discover our premium range of men's clothing and accessories</p>
+        </div>
+    </div>
+
+    <div class="shop-section">
+        <div class="container">
+            <div class="shop-container">
+                <div class="filters">
+                    <h3 class="filter-title">Filters</h3>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-title">Categories</h4>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                T-Shirts
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Shirts
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Jeans
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Jackets
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Shoes
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Accessories
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-title">Price Range</h4>
+                        <div class="price-range">
+                            <input type="range" min="0" max="10000" value="5000" class="price-slider" id="priceRange">
+                        </div>
+                        <div class="price-inputs">
+                            <input type="number" class="price-input" placeholder="Min" value="0">
+                            <input type="number" class="price-input" placeholder="Max" value="5000">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-title">Colors</h4>
+                        <div class="color-options">
+                            <div class="color-option active" style="background-color: #000000" title="Black"></div>
+                            <div class="color-option" style="background-color: #ffffff" title="White"></div>
+                            <div class="color-option" style="background-color: #0000ff" title="Blue"></div>
+                            <div class="color-option" style="background-color: #ff0000" title="Red"></div>
+                            <div class="color-option" style="background-color: #00ff00" title="Green"></div>
+                            <div class="color-option" style="background-color: #ffff00" title="Yellow"></div>
+                            <div class="color-option" style="background-color: #ffa500" title="Orange"></div>
+                            <div class="color-option" style="background-color: #808080" title="Gray"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-title">Size</h4>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                S
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                M
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                L
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                XL
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                XXL
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="clear-filter">Clear All Filters</button>
+                </div>
+                
+                <div class="products-section">
+                    <div class="products-header">
+                        <div class="products-count">Showing 12 of 36 products</div>
+                        <div class="products-sort">
+                            <span class="sort-label">Sort by:</span>
+                            <select class="sort-select">
+                                <option value="newest">Newest</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="popular">Most Popular</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="products-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product1.jpg" alt="Denim Jacket">
+                                <div class="product-badge">New</div>
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Premium Denim Jacket</h3>
+                                <p class="product-category">Jackets</p>
+                                <div class="product-price">
+                                    <div class="price">৳3,999</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product2.jpg" alt="Casual T-Shirt">
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Casual Cotton T-Shirt</h3>
+                                <p class="product-category">T-Shirts</p>
+                                <div class="product-price">
+                                    <div class="price">৳1,499</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- More Products -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product3.jpg" alt="Formal Shirt">
+                                <div class="product-badge">-15%</div>
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Formal Business Shirt</h3>
+                                <p class="product-category">Shirts</p>
+                                <div class="product-price">
+                                    <div>
+                                        <span class="original-price">৳2,999</span>
+                                        <span class="price">৳2,549</span>
+                                    </div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product4.jpg" alt="Sneakers">
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Casual Sneakers</h3>
+                                <p class="product-category">Shoes</p>
+                                <div class="product-price">
+                                    <div class="price">৳2,599</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product1.jpg" alt="Denim Jeans">
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Slim Fit Denim Jeans</h3>
+                                <p class="product-category">Jeans</p>
+                                <div class="product-price">
+                                    <div class="price">৳2,799</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product2.jpg" alt="Watch">
+                                <div class="product-badge">Hot</div>
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Stylish Wristwatch</h3>
+                                <p class="product-category">Accessories</p>
+                                <div class="product-price">
+                                    <div class="price">৳4,299</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Add more product cards here -->
+                    </div>
+                    
+                    <div class="pagination">
+                        <a href="#" class="page-item active">1</a>
+                        <a href="#" class="page-item">2</a>
+                        <a href="#" class="page-item">3</a>
+                        <a href="#" class="page-item"><i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h3>LIVOST</h3>
+                    <p>Rising Fashion Brand in Bangladesh offering the best quality products with authenticity guarantee.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="mens.html">Men</a></li>
+                        <li><a href="womens.html">Women</a></li>
+                        <li><a href="sale.html">Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Return Policy</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 LIVOST. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+        
+        // Color option selection
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Price range slider
+        const priceRange = document.getElementById('priceRange');
+        const priceInputs = document.querySelectorAll('.price-input');
+        
+        priceRange.addEventListener('input', function() {
+            priceInputs[1].value = this.value;
+        });
+        
+        priceInputs.forEach((input, index) => {
+            input.addEventListener('change', function() {
+                if (index === 0) {
+                    if (parseInt(this.value) > parseInt(priceInputs[1].value)) {
+                        this.value = 0;
+                    }
+                } else {
+                    priceRange.value = this.value;
+                    if (parseInt(this.value) < parseInt(priceInputs[0].value)) {
+                        this.value = priceInputs[0].value;
+                        priceRange.value = this.value;
+                    }
+                }
+            });
+        });
+        
+        // Clear all filters
+        const clearFilterBtn = document.querySelector('.clear-filter');
+        clearFilterBtn.addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('.checkbox-input');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+            
+            priceRange.value = 5000;
+            priceInputs[0].value = 0;
+            priceInputs[1].value = 5000;
+            
+            colorOptions.forEach(option => option.classList.remove('active'));
+            colorOptions[0].classList.add('active');
+        });
+    </script>
+</body>
+</html>

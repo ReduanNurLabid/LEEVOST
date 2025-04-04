@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVOST - Rising Fashion Brand</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            padding: 0;
+            margin-bottom: 60px;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+            position: relative;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 80%;
+            z-index: 1;
+        }
+
+        .slide-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .slide-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+            z-index: 2;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .dots-container {
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: 0.4}
+            to {opacity: 1}
+        }
+
+        /* Featured Categories */
+        .featured-categories {
+            padding: 60px 0;
+            background-color: var(--dark-gray);
+        }
+
+        .category-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .category-col {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .category-col:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-col img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.5s ease;
+        }
+
+        .category-col:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-col h3 {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            font-size: 18px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* Featured Products */
+        .featured-products {
+            padding: 60px 0;
+        }
+
+        .product-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-col {
+            flex-basis: calc(25% - 20px);
+            min-width: 250px;
+            padding: 15px;
+            text-align: center;
+            background-color: var(--dark-gray);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-col:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-col img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-col h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .product-col p {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* Offer Section */
+        .offer-section {
+            padding: 60px 0;
+            background-color: var(--dark-gray);
+            margin: 60px 0;
+        }
+
+        .offer-section .container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .offer-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 30px;
+        }
+
+        .offer-content h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .offer-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .offer-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .offer-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 0;
+        }
+
+        .feature-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feature-col {
+            flex-basis: calc(25% - 20px);
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--dark-gray);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-col:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-col i {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-col h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .feature-col p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .slide-content h1 {
+                font-size: 36px;
+            }
+            
+            .slide-content p {
+                font-size: 16px;
+            }
+            
+            .category-row, .product-row, .feature-row {
+                flex-direction: column;
+            }
+            
+            .category-col, .product-col, .feature-col {
+                margin-bottom: 20px;
+            }
+            
+            .offer-section .container {
+                flex-direction: column;
+            }
+            
+            .offer-content {
+                margin-bottom: 30px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <h1>LIVOST</h1>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="mens.html">Men</a></li>
+                        <li><a href="womens.html">Women</a></li>
+                        <li><a href="sale.html">Sale</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-icons">
+                    <a href="login.html"><i class="fas fa-user"></i></a>
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <div class="menu-icon">
+                    <i class="fas fa-bars" onclick="toggleMenu()"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="slide-content">
+                    <h1>Welcome to LIVOST</h1>
+                    <p>Best quality fashion products with authenticity guarantee</p>
+                    <a href="shop.html" class="btn">Shop Now</a>
+                </div>
+                <img src="images/slide1.jpg" alt="Fashion Collection">
+            </div>
+
+            <div class="mySlides fade">
+                <div class="slide-content">
+                    <h1>Summer Sale</h1>
+                    <p>Enjoy up to 15% off on selected items</p>
+                    <a href="sale.html" class="btn">View Offers</a>
+                </div>
+                <img src="images/slide2.jpg" alt="Summer Sale">
+            </div>
+
+            <div class="mySlides fade">
+                <div class="slide-content">
+                    <h1>New Arrivals</h1>
+                    <p>Check out our latest collections</p>
+                    <a href="new-arrivals.html" class="btn">Explore</a>
+                </div>
+                <img src="images/slide3.jpg" alt="New Arrivals">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <div class="dots-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+
+    <div class="featured-categories">
+        <div class="container">
+            <h2 class="section-title">Featured Categories</h2>
+            <div class="category-row">
+                <div class="category-col">
+                    <a href="mens.html">
+                        <img src="images/category-men.jpg" alt="Men's Collection">
+                        <h3>Men's Collection</h3>
+                    </a>
+                </div>
+                <div class="category-col">
+                    <a href="womens.html">
+                        <img src="images/category-women.jpg" alt="Women's Collection">
+                        <h3>Women's Collection</h3>
+                    </a>
+                </div>
+                <div class="category-col">
+                    <a href="accessories.html">
+                        <img src="images/category-accessories.jpg" alt="Accessories">
+                        <h3>Accessories</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="product-row">
+                <div class="product-col">
+                    <img src="images/product1.jpg" alt="Product 1">
+                    <h4>Premium Denim Jacket</h4>
+                    <p>৳3,999</p>
+                    <a href="product.html?id=1" class="btn-small">View Details</a>
+                </div>
+                <div class="product-col">
+                    <img src="images/product2.jpg" alt="Product 2">
+                    <h4>Casual Cotton T-Shirt</h4>
+                    <p>৳1,499</p>
+                    <a href="product.html?id=2" class="btn-small">View Details</a>
+                </div>
+                <div class="product-col">
+                    <img src="images/product3.jpg" alt="Product 3">
+                    <h4>Designer Dress</h4>
+                    <p>৳4,299</p>
+                    <a href="product.html?id=3" class="btn-small">View Details</a>
+                </div>
+                <div class="product-col">
+                    <img src="images/product4.jpg" alt="Product 4">
+                    <h4>Stylish Footwear</h4>
+                    <p>৳2,599</p>
+                    <a href="product.html?id=4" class="btn-small">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer-section">
+        <div class="container">
+            <div class="offer-content">
+                <h2>Summer Sale</h2>
+                <p>Up to 15% off on selected items</p>
+                <a href="sale.html" class="btn">Shop Now</a>
+            </div>
+            <div class="offer-image">
+                <img src="images/sale-banner.jpg" alt="Summer Sale">
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-col">
+                    <i class="fas fa-truck"></i>
+                    <h3>Fast Shipping</h3>
+                    <p>Nationwide delivery</p>
+                </div>
+                <div class="feature-col">
+                    <i class="fas fa-undo"></i>
+                    <h3>7-Day Replacement</h3>
+                    <p>Hassle-free returns</p>
+                </div>
+                <div class="feature-col">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Authentic Products</h3>
+                    <p>100% genuine items</p>
+                </div>
+                <div class="feature-col">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h3>LIVOST</h3>
+                    <p>Rising Fashion Brand in Bangladesh offering the best quality products with authenticity guarantee.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="mens.html">Men</a></li>
+                        <li><a href="womens.html">Women</a></li>
+                        <li><a href="sale.html">Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Return Policy</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 LIVOST. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 

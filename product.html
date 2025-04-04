@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Denim Jacket - LIVOST</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-section {
+            padding: 60px 0;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .product-images {
+            position: relative;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--primary-color);
+        }
+        
+        .product-details {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 24px;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        .product-description {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .product-meta {
+            margin-bottom: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .meta-label {
+            min-width: 100px;
+            color: var(--text-muted);
+        }
+        
+        .size-options, .color-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .size-option {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .size-option:hover, .size-option.active {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.3s ease;
+        }
+        
+        .color-option:hover, .color-option.active {
+            transform: scale(1.2);
+            border-color: white;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-label {
+            min-width: 100px;
+            color: var(--text-muted);
+        }
+        
+        .quantity-input {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-gray);
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .quantity-value {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid var(--light-gray);
+            background-color: transparent;
+            color: var(--text-color);
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 50px;
+            margin-top: 30px;
+            width: auto;
+            max-width: 600px;
+            margin-left: 52%;
+            border-radius: 5px;
+        }
+        
+        .add-to-cart, .add-to-wishlist {
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            flex: 3;
+            min-width: 140px;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .add-to-wishlist {
+            background-color: transparent;
+            border: 1px solid var(--light-gray);
+            color: var(--text-color);
+            flex: 2;
+            min-width: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .add-to-wishlist:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .product-tabs {
+            margin-top: 70px;
+            clear: both;
+        }
+        
+        .tabs-header {
+            display: flex;
+            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 20px;
+        }
+        
+        .tab-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-item:hover, .tab-item.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+            line-height: 1.7;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .specifications-list {
+            list-style: none;
+        }
+        
+        .specifications-list li {
+            padding: 10px 0;
+            display: flex;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .specifications-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-name {
+            flex: 1;
+            color: var(--text-muted);
+        }
+        
+        .spec-value {
+            flex: 2;
+        }
+        
+        .review {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .review:last-child {
+            border-bottom: none;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .reviewer-name {
+            font-weight: 500;
+        }
+        
+        .review-rating {
+            color: #ffc107;
+        }
+        
+        .review-date {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        .review-content {
+            line-height: 1.6;
+        }
+        
+        .shipping-item {
+            margin-bottom: 15px;
+        }
+        
+        .shipping-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .shipping-description {
+            color: var(--text-muted);
+        }
+        
+        .related-products {
+            margin-top: 60px;
+        }
+        
+        .related-title {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .related-products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-product {
+            background-color: var(--dark-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding-bottom: 15px;
+        }
+        
+        .related-product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .related-product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .related-product-info {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .related-product-title {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        
+        .related-product-price {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-image {
+                height: 350px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .add-to-cart, .add-to-wishlist {
+                width: 100%;
+            }
+            
+            .tabs-header {
+                flex-wrap: wrap;
+            }
+            
+            .related-products-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <h1>LIVOST</h1>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="mens.html">Men</a></li>
+                        <li><a href="womens.html">Women</a></li>
+                        <li><a href="sale.html">Sale</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-icons">
+                    <a href="login.html"><i class="fas fa-user"></i></a>
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <div class="menu-icon">
+                    <i class="fas fa-bars" onclick="toggleMenu()"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-section">
+        <div class="container">
+            <div class="product-container">
+                <div class="product-images">
+                    <img src="images/product1.jpg" alt="Premium Denim Jacket" id="mainImage" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="images/product1.jpg" alt="Thumbnail 1" class="thumbnail active" onclick="changeProductImage('mainImage', this.src)">
+                        <img src="images/product2.jpg" alt="Thumbnail 2" class="thumbnail" onclick="changeProductImage('mainImage', this.src)">
+                        <img src="images/product3.jpg" alt="Thumbnail 3" class="thumbnail" onclick="changeProductImage('mainImage', this.src)">
+                        <img src="images/product4.jpg" alt="Thumbnail 4" class="thumbnail" onclick="changeProductImage('mainImage', this.src)">
+                    </div>
+                </div>
+                
+                <div class="product-details">
+                    <h1 class="product-title">Premium Denim Jacket</h1>
+                    <div class="product-price">৳3,999</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(24 Reviews)</span>
+                    </div>
+                    <p class="product-description">
+                        This premium denim jacket is crafted from the finest quality denim fabric. It features a classic design with a modern twist, making it a perfect addition to your wardrobe. Versatile and stylish, it can be paired with various outfits for a trendy look.
+                    </p>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Category:</div>
+                            <div>Men's Outerwear</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Availability:</div>
+                            <div>In Stock</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">SKU:</div>
+                            <div>DJ-001</div>
+                        </div>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <div class="meta-label">Size:</div>
+                        <div class="size-options">
+                            <div class="size-option" onclick="selectSize(this)">S</div>
+                            <div class="size-option active" onclick="selectSize(this)">M</div>
+                            <div class="size-option" onclick="selectSize(this)">L</div>
+                            <div class="size-option" onclick="selectSize(this)">XL</div>
+                        </div>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <div class="meta-label">Color:</div>
+                        <div class="color-options">
+                            <div class="color-option active" style="background-color: #3a3a3a;" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background-color: #6b7280;" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background-color: #1e40af;" onclick="selectColor(this)"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <div class="quantity-label">Quantity:</div>
+                        <div class="quantity-input">
+                            <button class="quantity-btn" onclick="adjustProductQuantity(-1)">-</button>
+                            <input type="number" value="1" min="1" class="quantity-value" id="productQuantity">
+                            <button class="quantity-btn" onclick="adjustProductQuantity(1)">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <button class="add-to-cart" onclick="addToCartFromProduct(1)">
+                            Add to Cart
+                        </button>
+                        <button class="add-to-wishlist" onclick="addToWishlistFromProduct(1)">
+                            <i class="far fa-heart"></i> Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-tabs">
+                <div class="tabs-header">
+                    <div class="tab-item active" onclick="showTab('description')">Description</div>
+                    <div class="tab-item" onclick="showTab('specifications')">Specifications</div>
+                    <div class="tab-item" onclick="showTab('reviews')">Reviews</div>
+                    <div class="tab-item" onclick="showTab('shipping')">Shipping & Returns</div>
+                </div>
+                
+                <div class="tab-content active" id="description">
+                    <p>
+                        This premium denim jacket is a versatile addition to any wardrobe. Made from high-quality denim fabric, it offers both style and durability. The classic design features a button-up front, buttoned chest pockets, and side pockets for functionality.
+                    </p>
+                    <p>
+                        The jacket has a modern fit that is neither too loose nor too tight, making it suitable for various body types. The dark wash gives it a sophisticated look that can be dressed up or down depending on the occasion.
+                    </p>
+                    <p>
+                        Perfect for mild weather, this jacket can be layered over t-shirts, hoodies, or sweaters. It's an essential item for casual outings, weekend adventures, or even semi-formal events when paired with the right pieces.
+                    </p>
+                </div>
+                
+                <div class="tab-content" id="specifications">
+                    <ul class="specifications-list">
+                        <li>
+                            <div class="spec-name">Material</div>
+                            <div class="spec-value">100% Cotton Denim</div>
+                        </li>
+                        <li>
+                            <div class="spec-name">Fit</div>
+                            <div class="spec-value">Regular</div>
+                        </li>
+                        <li>
+                            <div class="spec-name">Closure</div>
+                            <div class="spec-value">Button</div>
+                        </li>
+                        <li>
+                            <div class="spec-name">Pockets</div>
+                            <div class="spec-value">4 (2 chest, 2 side)</div>
+                        </li>
+                        <li>
+                            <div class="spec-name">Care Instructions</div>
+                            <div class="spec-value">Machine wash cold, tumble dry low</div>
+                        </li>
+                        <li>
+                            <div class="spec-name">Country of Origin</div>
+                            <div class="spec-value">Bangladesh</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="reviews">
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="reviewer-name">Ahmed K.</div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="review-date">March 15, 2023</div>
+                        <div class="review-content">
+                            The quality of this denim jacket is outstanding! Perfect fit and the color is exactly as shown in the pictures. I've received many compliments when wearing it. Highly recommend!
+                        </div>
+                    </div>
+                    
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="reviewer-name">Tanya R.</div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="review-date">February 28, 2023</div>
+                        <div class="review-content">
+                            Great jacket for the price! The denim is a bit stiff at first but softens after a few wears. I would recommend sizing up if you plan to layer it over hoodies or sweaters.
+                        </div>
+                    </div>
+                    
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="reviewer-name">Rahul M.</div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="review-date">January 10, 2023</div>
+                        <div class="review-content">
+                            The jacket looks good and feels durable. The only reason I'm not giving it 5 stars is that the color was slightly different from what I expected. Otherwise, it's a solid purchase.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="shipping">
+                    <div class="shipping-item">
+                        <div class="shipping-title">Shipping Policy</div>
+                        <div class="shipping-description">
+                            <p>We offer the following shipping options:</p>
+                            <ul>
+                                <li>Standard Shipping: 3-5 business days (৳100)</li>
+                                <li>Express Shipping: 1-2 business days (৳250)</li>
+                                <li>Free shipping on orders over ৳5,000</li>
+                            </ul>
+                            <p>Orders are processed within 24 hours of payment confirmation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="shipping-item">
+                        <div class="shipping-title">Return Policy</div>
+                        <div class="shipping-description">
+                            <p>We accept returns within 7 days of delivery under the following conditions:</p>
+                            <ul>
+                                <li>Item must be unworn, unwashed, and in original condition with all tags attached</li>
+                                <li>Original packaging must be intact</li>
+                                <li>A receipt or proof of purchase is required</li>
+                            </ul>
+                            <p>Refunds will be processed within 5-7 business days after we receive the returned item.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="related-products">
+                <h2 class="related-title">You May Also Like</h2>
+                <div class="related-products-container">
+                    <div class="related-product">
+                        <img src="images/product2.jpg" alt="Casual Cotton T-Shirt">
+                        <div class="related-product-info">
+                            <h3 class="related-product-title">Casual Cotton T-Shirt</h3>
+                            <div class="related-product-price">৳1,499</div>
+                            <a href="product.html?id=2" class="btn-small">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-product">
+                        <img src="images/product3.jpg" alt="Designer Dress">
+                        <div class="related-product-info">
+                            <h3 class="related-product-title">Designer Dress</h3>
+                            <div class="related-product-price">৳4,299</div>
+                            <a href="product.html?id=3" class="btn-small">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-product">
+                        <img src="images/product4.jpg" alt="Stylish Footwear">
+                        <div class="related-product-info">
+                            <h3 class="related-product-title">Stylish Footwear</h3>
+                            <div class="related-product-price">৳2,599</div>
+                            <a href="product.html?id=4" class="btn-small">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-product">
+                        <img src="images/product1.jpg" alt="Leather Jacket">
+                        <div class="related-product-info">
+                            <h3 class="related-product-title">Leather Jacket</h3>
+                            <div class="related-product-price">৳5,999</div>
+                            <a href="product.html?id=5" class="btn-small">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h3>LIVOST</h3>
+                    <p>Rising Fashion Brand in Bangladesh offering the best quality products with authenticity guarantee.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="mens.html">Men</a></li>
+                        <li><a href="womens.html">Women</a></li>
+                        <li><a href="sale.html">Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Return Policy</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 LIVOST. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function selectSize(element) {
+            // Remove active class from all size options
+            document.querySelectorAll('.size-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            
+            // Add active class to selected size option
+            element.classList.add('active');
+        }
+        
+        function selectColor(element) {
+            // Remove active class from all color options
+            document.querySelectorAll('.color-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            
+            // Add active class to selected color option
+            element.classList.add('active');
+        }
+        
+        function adjustProductQuantity(change) {
+            const quantityInput = document.getElementById('productQuantity');
+            let currentValue = parseInt(quantityInput.value);
+            
+            currentValue += change;
+            
+            // Ensure value is at least 1
+            if (currentValue < 1) {
+                currentValue = 1;
+            }
+            
+            quantityInput.value = currentValue;
+        }
+        
+        function changeProductImage(imageId, src) {
+            document.getElementById(imageId).src = src;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+                if (thumb.src === src) {
+                    thumb.classList.add('active');
+                }
+            });
+        }
+        
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab items
+            document.querySelectorAll('.tab-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab item
+            document.querySelector(`.tab-item[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+        
+        function addToCartFromProduct(productId) {
+            const quantity = document.getElementById('productQuantity').value;
+            const size = document.querySelector('.size-option.active').textContent;
+            const color = document.querySelector('.color-option.active').style.backgroundColor;
+            
+            console.log(`Adding product ${productId} to cart. Quantity: ${quantity}, Size: ${size}, Color: ${color}`);
+            
+            // In a real application, this would add the item to the cart via AJAX
+            alert(`Added ${quantity} item(s) to cart!`);
+        }
+        
+        function addToWishlistFromProduct(productId) {
+            console.log(`Adding product ${productId} to wishlist`);
+            
+            // In a real application, this would add the item to the wishlist via AJAX
+            alert('Added to wishlist!');
+            
+            // Change heart icon
+            const wishlistBtn = document.querySelector('.add-to-wishlist i');
+            wishlistBtn.classList.remove('far');
+            wishlistBtn.classList.add('fas');
+        }
+    </script>
+</body>
+</html> 

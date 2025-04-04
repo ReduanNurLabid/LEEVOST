@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - LIVOST</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--background-color);
+        }
+        
+        .login-container {
+            background-color: var(--dark-gray);
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: var(--text-muted);
+        }
+        
+        .login-form .form-control {
+            margin-bottom: 20px;
+        }
+        
+        .login-form .form-control label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .login-form .form-control input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            background-color: transparent;
+            border-radius: 4px;
+            color: var(--text-color);
+            font-size: 16px;
+        }
+        
+        .login-form .form-control input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .login-form .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        
+        .login-footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .login-footer a {
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>LIVOST Admin</h1>
+            <p>Log in to manage your store</p>
+        </div>
+        
+        <form class="login-form" action="dashboard.html" method="get">
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="btn">Login</button>
+        </form>
+        
+        <div class="login-footer">
+            <a href="../index.html">Return to Website</a>
+        </div>
+    </div>
+</body>
+</html> 
