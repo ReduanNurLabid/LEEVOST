@@ -3,331 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVOST - Rising Fashion Brand</title>
+    <title>LEEVOST - Rising Fashion Brand</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Hero Section */
-        .hero-section {
-            position: relative;
-            padding: 0;
-            margin-bottom: 60px;
-        }
-
-        .slideshow-container {
-            position: relative;
-            max-height: 600px;
-            overflow: hidden;
-        }
-
-        .mySlides {
-            display: none;
-            position: relative;
-        }
-
-        .mySlides img {
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
-            filter: brightness(0.7);
-        }
-
-        .slide-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            width: 80%;
-            z-index: 1;
-        }
-
-        .slide-content h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-        }
-
-        .slide-content p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-        }
-
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-            z-index: 2;
-        }
-
-        .prev {
-            left: 20px;
-        }
-
-        .next {
-            right: 20px;
-        }
-
-        .prev:hover, .next:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .dots-container {
-            text-align: center;
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            z-index: 2;
-        }
-
-        .dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 5px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {opacity: 0.4}
-            to {opacity: 1}
-        }
-
-        /* Featured Categories */
-        .featured-categories {
-            padding: 60px 0;
-            background-color: var(--dark-gray);
-        }
-
-        .category-row {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .category-col {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .category-col:hover {
-            transform: translateY(-10px);
-        }
-
-        .category-col img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.5s ease;
-        }
-
-        .category-col:hover img {
-            transform: scale(1.1);
-        }
-
-        .category-col h3 {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            font-size: 18px;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-        }
-
-        /* Featured Products */
-        .featured-products {
-            padding: 60px 0;
-        }
-
-        .product-row {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .product-col {
-            flex-basis: calc(25% - 20px);
-            min-width: 250px;
-            padding: 15px;
-            text-align: center;
-            background-color: var(--dark-gray);
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-col:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .product-col img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .product-col h4 {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .product-col p {
-            font-size: 18px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        /* Offer Section */
-        .offer-section {
-            padding: 60px 0;
-            background-color: var(--dark-gray);
-            margin: 60px 0;
-        }
-
-        .offer-section .container {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .offer-content {
-            flex: 1;
-            min-width: 300px;
-            padding: 0 30px;
-        }
-
-        .offer-content h2 {
-            font-size: 36px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .offer-content p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .offer-image {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .offer-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        /* Features */
-        .features {
-            padding: 60px 0;
-        }
-
-        .feature-row {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .feature-col {
-            flex-basis: calc(25% - 20px);
-            min-width: 200px;
-            text-align: center;
-            padding: 20px;
-            background-color: var(--dark-gray);
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-col:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-col i {
-            font-size: 36px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .feature-col h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .feature-col p {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* Responsive Styles */
-        @media screen and (max-width: 768px) {
-            .slide-content h1 {
-                font-size: 36px;
-            }
-            
-            .slide-content p {
-                font-size: 16px;
-            }
-            
-            .category-row, .product-row, .feature-row {
-                flex-direction: column;
-            }
-            
-            .category-col, .product-col, .feature-col {
-                margin-bottom: 20px;
-            }
-            
-            .offer-section .container {
-                flex-direction: column;
-            }
-            
-            .offer-content {
-                margin-bottom: 30px;
-                text-align: center;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <h1>LIVOST</h1>
+                    <h1>LEEVOST</h1>
                 </div>
                 <nav>
                     <ul id="menuItems">
@@ -335,8 +20,6 @@
                         <li><a href="mens.html">Men</a></li>
                         <li><a href="womens.html">Women</a></li>
                         <li><a href="sale.html">Sale</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="nav-icons">
@@ -354,7 +37,7 @@
         <div class="slideshow-container">
             <div class="mySlides fade">
                 <div class="slide-content">
-                    <h1>Welcome to LIVOST</h1>
+                    <h1>Welcome to LEEVOST</h1>
                     <p>Best quality fashion products with authenticity guarantee</p>
                     <a href="shop.html" class="btn">Shop Now</a>
                 </div>
@@ -492,7 +175,7 @@
         <div class="container">
             <div class="footer-row">
                 <div class="footer-col">
-                    <h3>LIVOST</h3>
+                    <h3>LEEVOST</h3>
                     <p>Rising Fashion Brand in Bangladesh offering the best quality products with authenticity guarantee.</p>
                 </div>
                 <div class="footer-col">
@@ -524,7 +207,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 LIVOST. All Rights Reserved.</p>
+                <p>&copy; 2023 LEEVOST. All Rights Reserved.</p>
             </div>
         </div>
     </footer>

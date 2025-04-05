@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers Management - LEEVOST</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-width: 250px;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--background-color);
+        }
+        
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--dark-gray);
+            color: var(--text-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .sidebar-header h2 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu a:hover, 
+        .sidebar-menu a.active {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+        }
+        
+        .sidebar-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .toggle-sidebar {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        
+        .admin-card {
+            background-color: var(--dark-gray);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .admin-card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-card-header h3 {
+            margin: 0;
+        }
+        
+        .admin-card-body {
+            padding: 20px;
+        }
+        
+        .search-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .search-filter input, 
+        .search-filter select {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            color: var(--text-color);
+        }
+        
+        .search-filter button {
+            padding: 10px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-filter button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .customers-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .customers-table th,
+        .customers-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .customers-table thead th {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .customer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .view-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .edit-btn:hover {
+            color: #ffc107;
+        }
+        
+        .delete-btn:hover {
+            color: #dc3545;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 5px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a.active,
+        .pagination a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .customer-details {
+            display: none;
+        }
+        
+        .back-btn {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--dark-gray);
+        }
+        
+        .customer-profile {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        
+        .customer-profile-image {
+            text-align: center;
+        }
+        
+        .customer-profile-image img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .customer-info-section {
+            margin-bottom: 30px;
+        }
+        
+        .customer-info-section h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 10px;
+        }
+        
+        .customer-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .customer-info-item {
+            margin-bottom: 10px;
+        }
+        
+        .customer-info-item label {
+            display: block;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .customer-info-item p {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .customer-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-card h5 {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .stat-card p {
+            margin: 10px 0 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .order-history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .order-history-table th,
+        .order-history-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .order-history-table thead th {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        @media screen and (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .toggle-sidebar {
+                display: block;
+            }
+            
+            .customer-profile {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .search-filter {
+                flex-direction: column;
+            }
+            
+            .customers-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .customer-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .customer-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>LEEVOST Admin</h2>
+        </div>
+        
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
+                <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="customers.html" class="active"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="page-header">
+            <div>
+                <button class="toggle-sidebar" id="toggleSidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Customers Management</h1>
+            </div>
+            
+            <div class="user-info">
+                <img src="../images/admin-avatar.jpg" alt="Admin">
+                <span>Admin</span>
+            </div>
+        </div>
+        
+        <div class="admin-card" id="customers-list-section">
+            <div class="admin-card-header">
+                <h3>All Customers</h3>
+            </div>
+            
+            <div class="admin-card-body">
+                <div class="search-filter">
+                    <input type="text" placeholder="Search by Name" id="search-name">
+                    <input type="text" placeholder="Search by Email" id="search-email">
+                    <input type="text" placeholder="Search by Phone" id="search-phone">
+                    <button onclick="filterCustomers()">Filter</button>
+                </div>
+                
+                <table class="customers-table">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Orders</th>
+                            <th>Total Spent</th>
+                            <th>Registered</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="../images/customer1.jpg" alt="Customer" class="customer-avatar">
+                                    <span>Kabir Ahmed</span>
+                                </div>
+                            </td>
+                            <td>kabir@example.com</td>
+                            <td>+880 1712345678</td>
+                            <td>5</td>
+                            <td>৳24,599</td>
+                            <td>2023-01-15</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn" onclick="viewCustomer(1)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" onclick="editCustomer(1)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" onclick="deleteCustomer(1)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="../images/customer2.jpg" alt="Customer" class="customer-avatar">
+                                    <span>Nadia Islam</span>
+                                </div>
+                            </td>
+                            <td>nadia@example.com</td>
+                            <td>+880 1812345678</td>
+                            <td>3</td>
+                            <td>৳15,299</td>
+                            <td>2023-02-20</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn" onclick="viewCustomer(2)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" onclick="editCustomer(2)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" onclick="deleteCustomer(2)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="../images/customer3.jpg" alt="Customer" class="customer-avatar">
+                                    <span>Tareq Rahman</span>
+                                </div>
+                            </td>
+                            <td>tareq@example.com</td>
+                            <td>+880 1912345678</td>
+                            <td>7</td>
+                            <td>৳42,799</td>
+                            <td>2022-11-05</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn" onclick="viewCustomer(3)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" onclick="editCustomer(3)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" onclick="deleteCustomer(3)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="../images/customer4.jpg" alt="Customer" class="customer-avatar">
+                                    <span>Shila Akter</span>
+                                </div>
+                            </td>
+                            <td>shila@example.com</td>
+                            <td>+880 1612345678</td>
+                            <td>2</td>
+                            <td>৳8,199</td>
+                            <td>2023-03-18</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn" onclick="viewCustomer(4)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" onclick="editCustomer(4)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" onclick="deleteCustomer(4)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="../images/customer5.jpg" alt="Customer" class="customer-avatar">
+                                    <span>Anik Khan</span>
+                                </div>
+                            </td>
+                            <td>anik@example.com</td>
+                            <td>+880 1512345678</td>
+                            <td>4</td>
+                            <td>৳18,899</td>
+                            <td>2023-01-28</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn" onclick="viewCustomer(5)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" onclick="editCustomer(5)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" onclick="deleteCustomer(5)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#"><i class="fas fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="customer-details" id="customer-details-section">
+            <button class="back-btn" onclick="showCustomersList()">
+                <i class="fas fa-arrow-left"></i> Back to Customers
+            </button>
+            
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3>Customer Profile</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn edit-btn" id="edit-customer-btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-card-body">
+                    <div class="customer-profile">
+                        <div class="customer-profile-image">
+                            <img src="../images/customer1.jpg" alt="Customer" id="profile-image">
+                            <h3 id="customer-name">Kabir Ahmed</h3>
+                            <p id="customer-email">kabir@example.com</p>
+                        </div>
+                        
+                        <div class="customer-profile-info">
+                            <div class="customer-stats">
+                                <div class="stat-card">
+                                    <h5>Total Orders</h5>
+                                    <p id="stat-orders">5</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h5>Total Spent</h5>
+                                    <p id="stat-spent">৳24,599</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h5>Member Since</h5>
+                                    <p id="stat-joined">Jan 15, 2023</p>
+                                </div>
+                            </div>
+                            
+                            <div class="customer-info-section">
+                                <h4>Contact Information</h4>
+                                <div class="customer-info-grid">
+                                    <div class="customer-info-item">
+                                        <label>Phone</label>
+                                        <p id="customer-phone">+880 1712345678</p>
+                                    </div>
+                                    <div class="customer-info-item">
+                                        <label>Address</label>
+                                        <p id="customer-address">House #45, Road #7, Block C, Banani, Dhaka 1213, Bangladesh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="customer-info-section">
+                                <h4>Order History</h4>
+                                <table class="order-history-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Date</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="order-history">
+                                        <tr>
+                                            <td>#ORD-1001</td>
+                                            <td>2023-09-15</td>
+                                            <td>৳8,599</td>
+                                            <td>Completed</td>
+                                            <td>
+                                                <button class="action-btn view-btn" onclick="viewOrder('ORD-1001')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD-958</td>
+                                            <td>2023-08-22</td>
+                                            <td>৳4,299</td>
+                                            <td>Completed</td>
+                                            <td>
+                                                <button class="action-btn view-btn" onclick="viewOrder('ORD-958')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD-872</td>
+                                            <td>2023-07-10</td>
+                                            <td>৳6,799</td>
+                                            <td>Completed</td>
+                                            <td>
+                                                <button class="action-btn view-btn" onclick="viewOrder('ORD-872')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD-750</td>
+                                            <td>2023-05-18</td>
+                                            <td>৳2,499</td>
+                                            <td>Completed</td>
+                                            <td>
+                                                <button class="action-btn view-btn" onclick="viewOrder('ORD-750')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD-651</td>
+                                            <td>2023-03-05</td>
+                                            <td>৳2,199</td>
+                                            <td>Completed</td>
+                                            <td>
+                                                <button class="action-btn view-btn" onclick="viewOrder('ORD-651')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle sidebar
+        document.getElementById('toggleSidebar').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+        
+        // Show customers list
+        function showCustomersList() {
+            document.getElementById('customers-list-section').style.display = 'block';
+            document.getElementById('customer-details-section').style.display = 'none';
+        }
+        
+        // View customer details
+        function viewCustomer(customerId) {
+            document.getElementById('customers-list-section').style.display = 'none';
+            document.getElementById('customer-details-section').style.display = 'block';
+            
+            // In a real application, this would fetch customer data from the server
+            // and populate the details view
+            
+            // For demo purposes, we'll just use the example data already in the HTML
+            document.getElementById('edit-customer-btn').onclick = function() {
+                editCustomer(customerId);
+            };
+        }
+        
+        // Edit customer
+        function editCustomer(customerId) {
+            // In a real application, this might redirect to a customer editing page
+            // or open a modal to edit the customer
+            alert(`Editing customer ${customerId}`);
+        }
+        
+        // Delete customer
+        function deleteCustomer(customerId) {
+            if (confirm(`Are you sure you want to delete customer with ID: ${customerId}?`)) {
+                alert(`Customer ${customerId} has been deleted.`);
+                // In a real application, this would send a delete request to the server
+                // and then refresh the customers list
+            }
+        }
+        
+        // Filter customers
+        function filterCustomers() {
+            const name = document.getElementById('search-name').value;
+            const email = document.getElementById('search-email').value;
+            const phone = document.getElementById('search-phone').value;
+            
+            // In a real application, this would send a request to the server
+            // with the filter parameters and update the table with the results
+            alert(`Filtering customers - Name: "${name}", Email: "${email}", Phone: "${phone}"`);
+        }
+        
+        // View order (from customer profile)
+        function viewOrder(orderId) {
+            // In a real application, this would navigate to the order details page
+            alert(`Viewing order ${orderId}`);
+        }
+        
+        // Initialize - show customers list by default
+        showCustomersList();
+    </script>
+</body>
+</html> 

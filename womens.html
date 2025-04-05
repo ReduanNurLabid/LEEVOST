@@ -20,8 +20,6 @@
                         <li><a href="mens.html">Men</a></li>
                         <li><a href="womens.html" class="active">Women</a></li>
                         <li><a href="sale.html">Sale</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="nav-icons">
@@ -35,33 +33,317 @@
         </div>
     </header>
 
-    <div class="womens-collection">
+    <div class="banner-section">
+        <img src="images/category-women.jpg" alt="Women's Collection">
+        <div class="banner-content">
+            <h1>Women's Collection</h1>
+            <p>Discover our premium range of women's clothing and accessories</p>
+        </div>
+    </div>
+
+    <div class="shop-section">
         <div class="container">
-            <h2 class="section-title">Women's Collection</h2>
-            <div class="product-row">
-                <div class="product-col">
-                    <img src="images/product1.jpg" alt="Product 1">
-                    <h4>Elegant Summer Dress</h4>
-                    <p>৳3,499</p>
-                    <a href="product.html?id=1" class="btn-small">View Details</a>
+            <div class="shop-container">
+                <div class="filters">
+                    <h3 class="filter-title">Filters</h3>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-title">Categories</h4>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Dresses
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Tops
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Skirts
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Jackets
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Footwear
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                Accessories
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-title">Price Range</h4>
+                        <div class="price-range">
+                            <input type="range" min="0" max="10000" value="5000" class="price-slider" id="priceRange">
+                        </div>
+                        <div class="price-inputs">
+                            <input type="number" class="price-input" placeholder="Min" value="0">
+                            <input type="number" class="price-input" placeholder="Max" value="5000">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-title">Colors</h4>
+                        <div class="color-options">
+                            <div class="color-option active" style="background-color: #000000" title="Black"></div>
+                            <div class="color-option" style="background-color: #ffffff" title="White"></div>
+                            <div class="color-option" style="background-color: #0000ff" title="Blue"></div>
+                            <div class="color-option" style="background-color: #ff0000" title="Red"></div>
+                            <div class="color-option" style="background-color: #00ff00" title="Green"></div>
+                            <div class="color-option" style="background-color: #ffff00" title="Yellow"></div>
+                            <div class="color-option" style="background-color: #ffa500" title="Orange"></div>
+                            <div class="color-option" style="background-color: #808080" title="Gray"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-title">Size</h4>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                S
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                M
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                L
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                XL
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                XXL
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="clear-filter">Clear All Filters</button>
                 </div>
-                <div class="product-col">
-                    <img src="images/product2.jpg" alt="Product 2">
-                    <h4>Stylish Handbag</h4>
-                    <p>৳2,199</p>
-                    <a href="product.html?id=2" class="btn-small">View Details</a>
-                </div>
-                <div class="product-col">
-                    <img src="images/product3.jpg" alt="Product 3">
-                    <h4>Chic Blouse</h4>
-                    <p>৳1,299</p>
-                    <a href="product.html?id=3" class="btn-small">View Details</a>
-                </div>
-                <div class="product-col">
-                    <img src="images/product4.jpg" alt="Product 4">
-                    <h4>Trendy Skirt</h4>
-                    <p>৳1,799</p>
-                    <a href="product.html?id=4" class="btn-small">View Details</a>
+                
+                <div class="products-section">
+                    <div class="products-header">
+                        <div class="products-count">Showing 12 of 36 products</div>
+                        <div class="products-sort">
+                            <span class="sort-label">Sort by:</span>
+                            <select class="sort-select">
+                                <option value="newest">Newest</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="popular">Most Popular</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="products-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product1.jpg" alt="Elegant Summer Dress">
+                                <div class="product-badge">New</div>
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Elegant Summer Dress</h3>
+                                <p class="product-category">Dresses</p>
+                                <div class="product-price">
+                                    <div class="price">৳3,499</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product2.jpg" alt="Stylish Handbag">
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Stylish Handbag</h3>
+                                <p class="product-category">Accessories</p>
+                                <div class="product-price">
+                                    <div class="price">৳2,199</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- More Products -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product3.jpg" alt="Chic Blouse">
+                                <div class="product-badge">-15%</div>
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Chic Blouse</h3>
+                                <p class="product-category">Tops</p>
+                                <div class="product-price">
+                                    <div>
+                                        <span class="original-price">৳1,599</span>
+                                        <span class="price">৳1,299</span>
+                                    </div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product4.jpg" alt="Trendy Skirt">
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Trendy Skirt</h3>
+                                <p class="product-category">Skirts</p>
+                                <div class="product-price">
+                                    <div class="price">৳1,799</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product1.jpg" alt="Designer Jacket">
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Designer Jacket</h3>
+                                <p class="product-category">Jackets</p>
+                                <div class="product-price">
+                                    <div class="price">৳4,299</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/product2.jpg" alt="Fashion Shoes">
+                                <div class="product-badge">Hot</div>
+                                <div class="product-actions">
+                                    <a href="#" class="product-action"><i class="fas fa-heart"></i></a>
+                                    <a href="#" class="product-action"><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="product.html" class="product-action"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Fashion Shoes</h3>
+                                <p class="product-category">Footwear</p>
+                                <div class="product-price">
+                                    <div class="price">৳2,899</div>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Add more product cards here -->
+                    </div>
+                    
+                    <div class="pagination">
+                        <a href="#" class="page-item active">1</a>
+                        <a href="#" class="page-item">2</a>
+                        <a href="#" class="page-item">3</a>
+                        <a href="#" class="page-item"><i class="fas fa-angle-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,5 +389,60 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+        
+        // Color option selection
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Price range slider
+        const priceRange = document.getElementById('priceRange');
+        const priceInputs = document.querySelectorAll('.price-input');
+        
+        priceRange.addEventListener('input', function() {
+            priceInputs[1].value = this.value;
+        });
+        
+        priceInputs.forEach((input, index) => {
+            input.addEventListener('change', function() {
+                if (index === 0) {
+                    if (parseInt(this.value) > parseInt(priceInputs[1].value)) {
+                        this.value = 0;
+                    }
+                } else {
+                    priceRange.value = this.value;
+                    if (parseInt(this.value) < parseInt(priceInputs[0].value)) {
+                        this.value = priceInputs[0].value;
+                        priceRange.value = this.value;
+                    }
+                }
+            });
+        });
+        
+        // Clear all filters
+        const clearFilterBtn = document.querySelector('.clear-filter');
+        clearFilterBtn.addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('.checkbox-input');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+            
+            priceRange.value = 5000;
+            priceInputs[0].value = 0;
+            priceInputs[1].value = 5000;
+            
+            colorOptions.forEach(option => option.classList.remove('active'));
+            colorOptions[0].classList.add('active');
+        });
+    </script>
 </body>
 </html>
