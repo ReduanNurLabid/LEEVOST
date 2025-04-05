@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - LEEVOST</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-width: 250px;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--background-color);
+        }
+        
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--dark-gray);
+            color: var(--text-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .sidebar-header h2 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu a:hover, 
+        .sidebar-menu a.active {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+        }
+        
+        .sidebar-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .toggle-sidebar {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        
+        .admin-card {
+            background-color: var(--dark-gray);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .admin-card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-card-header h3 {
+            margin: 0;
+        }
+        
+        .admin-card-body {
+            padding: 20px;
+        }
+        
+        .settings-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 20px;
+        }
+        
+        .settings-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .settings-tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .settings-content {
+            display: none;
+        }
+        
+        .settings-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            color: var(--text-color);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-group .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .form-group .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .settings-section {
+            margin-bottom: 30px;
+        }
+        
+        .settings-section h4 {
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .color-picker-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .color-preview {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--light-gray);
+            cursor: pointer;
+        }
+        
+        .logo-preview {
+            max-width: 200px;
+            max-height: 100px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .payment-method img {
+            width: 60px;
+            margin-right: 15px;
+        }
+        
+        @media screen and (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .toggle-sidebar {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>LEEVOST Admin</h2>
+        </div>
+        
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
+                <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="page-header">
+            <div>
+                <button class="toggle-sidebar" id="toggleSidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Settings</h1>
+            </div>
+            
+            <div class="user-info">
+                <img src="../images/admin-avatar.jpg" alt="Admin">
+                <span>Admin</span>
+            </div>
+        </div>
+        
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <h3>Store Settings</h3>
+            </div>
+            
+            <div class="admin-card-body">
+                <div class="settings-tabs">
+                    <div class="settings-tab active" data-tab="general">General</div>
+                    <div class="settings-tab" data-tab="appearance">Appearance</div>
+                    <div class="settings-tab" data-tab="payment">Payment</div>
+                    <div class="settings-tab" data-tab="shipping">Shipping</div>
+                    <div class="settings-tab" data-tab="email">Email</div>
+                    <div class="settings-tab" data-tab="admin">Admin</div>
+                </div>
+                
+                <!-- General Settings -->
+                <div class="settings-content active" id="general-settings">
+                    <div class="settings-section">
+                        <h4>Store Information</h4>
+                        <div class="form-group">
+                            <label for="store-name">Store Name</label>
+                            <input type="text" id="store-name" value="LEEVOST">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="store-description">Store Description</label>
+                            <textarea id="store-description">LEEVOST is a premier fashion store offering high-quality clothing for men and women.</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="store-email">Store Email</label>
+                            <input type="email" id="store-email" value="info@leevost.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="store-phone">Store Phone</label>
+                            <input type="text" id="store-phone" value="+880 1812345678">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="store-address">Store Address</label>
+                            <textarea id="store-address">House #45, Road #7, Block C, Banani, Dhaka 1213, Bangladesh</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Currency Settings</h4>
+                        <div class="form-group">
+                            <label for="currency">Currency</label>
+                            <select id="currency">
+                                <option value="BDT" selected>Bangladeshi Taka (৳)</option>
+                                <option value="USD">US Dollar ($)</option>
+                                <option value="EUR">Euro (€)</option>
+                                <option value="GBP">British Pound (£)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currency-position">Currency Position</label>
+                            <select id="currency-position">
+                                <option value="before">Before Price (৳100)</option>
+                                <option value="after" selected>After Price (100৳)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="saveSettings('general')">Save Changes</button>
+                </div>
+                
+                <!-- Appearance Settings -->
+                <div class="settings-content" id="appearance-settings">
+                    <div class="settings-section">
+                        <h4>Theme Colors</h4>
+                        <div class="color-picker-group">
+                            <div class="color-item">
+                                <label>Primary Color</label>
+                                <div class="color-preview" style="background-color: #ff3e6c;" onclick="openColorPicker('primary-color')"></div>
+                                <input type="color" id="primary-color" value="#ff3e6c" style="display: none;">
+                            </div>
+                            
+                            <div class="color-item">
+                                <label>Secondary Color</label>
+                                <div class="color-preview" style="background-color: #ff7e9c;" onclick="openColorPicker('secondary-color')"></div>
+                                <input type="color" id="secondary-color" value="#ff7e9c" style="display: none;">
+                            </div>
+                            
+                            <div class="color-item">
+                                <label>Background Color</label>
+                                <div class="color-preview" style="background-color: #121212;" onclick="openColorPicker('background-color')"></div>
+                                <input type="color" id="background-color" value="#121212" style="display: none;">
+                            </div>
+                            
+                            <div class="color-item">
+                                <label>Text Color</label>
+                                <div class="color-preview" style="background-color: #ffffff;" onclick="openColorPicker('text-color')"></div>
+                                <input type="color" id="text-color" value="#ffffff" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Logo</h4>
+                        <div class="form-group">
+                            <label for="logo-upload">Upload Logo</label>
+                            <input type="file" id="logo-upload" accept="image/*" onchange="previewLogo(event)">
+                            <img id="logo-preview" class="logo-preview" src="#" alt="Logo Preview">
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Homepage Settings</h4>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-slider" checked>
+                                Show Slider
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-featured" checked>
+                                Show Featured Products
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-categories" checked>
+                                Show Categories Section
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-bestsellers" checked>
+                                Show Best Sellers
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="products-per-page">Products Per Page</label>
+                            <select id="products-per-page">
+                                <option value="8">8</option>
+                                <option value="12" selected>12</option>
+                                <option value="16">16</option>
+                                <option value="24">24</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="saveSettings('appearance')">Save Changes</button>
+                </div>
+                
+                <!-- Payment Settings -->
+                <div class="settings-content" id="payment-settings">
+                    <div class="settings-section">
+                        <h4>Payment Methods</h4>
+                        <div class="payment-method">
+                            <input type="checkbox" id="payment-cash" checked>
+                            <img src="../images/cash-on-delivery.png" alt="Cash on Delivery">
+                            <div>
+                                <label for="payment-cash">Cash on Delivery</label>
+                                <p>Allow customers to pay with cash upon delivery</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <input type="checkbox" id="payment-card" checked>
+                            <img src="../images/credit-card.png" alt="Credit Card">
+                            <div>
+                                <label for="payment-card">Credit/Debit Card</label>
+                                <p>Accept payments via Visa, Mastercard, etc.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <input type="checkbox" id="payment-bkash" checked>
+                            <img src="../images/bkash.png" alt="bKash">
+                            <div>
+                                <label for="payment-bkash">bKash</label>
+                                <p>Accept payments via bKash mobile banking</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <input type="checkbox" id="payment-nagad">
+                            <img src="../images/nagad.png" alt="Nagad">
+                            <div>
+                                <label for="payment-nagad">Nagad</label>
+                                <p>Accept payments via Nagad mobile banking</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="saveSettings('payment')">Save Changes</button>
+                </div>
+                
+                <!-- Shipping Settings -->
+                <div class="settings-content" id="shipping-settings">
+                    <div class="settings-section">
+                        <h4>Shipping Methods</h4>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="shipping-standard" checked>
+                                Standard Shipping
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="standard-shipping-cost">Cost (BDT)</label>
+                            <input type="number" id="standard-shipping-cost" value="100">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="shipping-express" checked>
+                                Express Shipping
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="express-shipping-cost">Cost (BDT)</label>
+                            <input type="number" id="express-shipping-cost" value="200">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="free-shipping-threshold-enabled" checked>
+                                Enable Free Shipping Threshold
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="free-shipping-threshold">Free Shipping for Orders Above (BDT)</label>
+                            <input type="number" id="free-shipping-threshold" value="5000">
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="saveSettings('shipping')">Save Changes</button>
+                </div>
+                
+                <!-- Email Settings -->
+                <div class="settings-content" id="email-settings">
+                    <div class="settings-section">
+                        <h4>SMTP Configuration</h4>
+                        <div class="form-group">
+                            <label for="smtp-host">SMTP Host</label>
+                            <input type="text" id="smtp-host" value="smtp.gmail.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="smtp-port">SMTP Port</label>
+                            <input type="text" id="smtp-port" value="587">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="smtp-username">SMTP Username</label>
+                            <input type="text" id="smtp-username" value="your-email@gmail.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="smtp-password">SMTP Password</label>
+                            <input type="password" id="smtp-password" value="your-password">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="smtp-encryption">Encryption</label>
+                            <select id="smtp-encryption">
+                                <option value="tls" selected>TLS</option>
+                                <option value="ssl">SSL</option>
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="from-email">From Email</label>
+                            <input type="email" id="from-email" value="noreply@leevost.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="from-name">From Name</label>
+                            <input type="text" id="from-name" value="LEEVOST Store">
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Email Notifications</h4>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="notify-orders" checked>
+                                New Order Notifications
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="notify-customers" checked>
+                                New Customer Notifications
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="notify-reviews" checked>
+                                New Review Notifications
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="admin-email">Admin Email for Notifications</label>
+                            <input type="email" id="admin-email" value="admin@leevost.com">
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="saveSettings('email')">Save Changes</button>
+                    <button class="btn btn-outline" onclick="testEmailSettings()">Test Email Settings</button>
+                </div>
+                
+                <!-- Admin Settings -->
+                <div class="settings-content" id="admin-settings">
+                    <div class="settings-section">
+                        <h4>Admin Account</h4>
+                        <div class="form-group">
+                            <label for="admin-username">Username</label>
+                            <input type="text" id="admin-username" value="admin">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="admin-password">New Password</label>
+                            <input type="password" id="admin-password" placeholder="Leave blank to keep current password">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="admin-confirm-password">Confirm New Password</label>
+                            <input type="password" id="admin-confirm-password" placeholder="Confirm new password">
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Security Settings</h4>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="enable-two-factor" checked>
+                                Enable Two-Factor Authentication
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="session-timeout">Session Timeout (minutes)</label>
+                            <input type="number" id="session-timeout" value="30">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="ip-restriction" checked>
+                                Enable IP Restriction
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="allowed-ips">Allowed IPs (one per line)</label>
+                            <textarea id="allowed-ips">127.0.0.1</textarea>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="saveSettings('admin')">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle sidebar
+        document.getElementById('toggleSidebar').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+        
+        // Tab switching
+        document.querySelectorAll('.settings-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Hide all content sections
+                document.querySelectorAll('.settings-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Remove active class from all tabs
+                document.querySelectorAll('.settings-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Activate the clicked tab
+                this.classList.add('active');
+                
+                // Show the corresponding content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-settings`).classList.add('active');
+            });
+        });
+        
+        // Color picker
+        function openColorPicker(id) {
+            document.getElementById(id).click();
+            
+            // Update color preview when color is changed
+            document.getElementById(id).addEventListener('input', function() {
+                document.querySelector(`[onclick="openColorPicker('${id}')"]`).style.backgroundColor = this.value;
+            });
+        }
+        
+        // Logo preview
+        function previewLogo(event) {
+            const preview = document.getElementById('logo-preview');
+            preview.style.display = 'block';
+            preview.src = URL.createObjectURL(event.target.files[0]);
+        }
+        
+        // Save settings
+        function saveSettings(section) {
+            // In a real application, this would send the settings to the server
+            alert(`${section.charAt(0).toUpperCase() + section.slice(1)} settings have been saved.`);
+        }
+        
+        // Test email settings
+        function testEmailSettings() {
+            // In a real application, this would send a test email using the configured settings
+            alert('A test email has been sent to the configured email address.');
+        }
+    </script>
+</body>
+</html> 
